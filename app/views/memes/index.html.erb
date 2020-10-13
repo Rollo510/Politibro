@@ -1,1 +1,17 @@
-<h1>Here are the dankest memes of the day:</h1>
+<h1> Welcome, <%= current_user.username %>! </h1>
+<h2>Here are the dankest memes of the day:</h2>
+
+ <% if flash[:alert] %>
+    <% flash[:alert] %>
+<% end %>
+
+
+
+
+<ul>
+    <% @memes.each do |meme| %> 
+    <li><%= image_tag (meme.title) %> </li>
+    <% end %>
+</ul>
+
+<%= button_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure you want to sign out?"} %>

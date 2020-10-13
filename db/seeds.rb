@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Meme.create(title: 'https://media.npr.org/assets/img/2012/10/24/meme_wide-abfb577de3cc5c066e03366963f0f5431411c6dd-s800-c85.jpg', nsfw: false, description: "Obama and Mitt Romney")
