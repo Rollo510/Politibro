@@ -1,16 +1,21 @@
-<h1> Welcome, <%= current_user.username %>! </h1>
-<h2>Here are the dankest memes of the day:</h2>
+<h1> Welcome to Politibro, <%= current_user.username %>! </h1>
+<br>
+<h2> Feel free to post your own toxic memes and be sure to insult other users! </h2>
+<br>
+<h2>Here are some of our freshest memes:</h2>
 
  <% if flash[:alert] %>
     <% flash[:alert] %>
 <% end %>
+
+<%= link_to "Create a meme", new_meme_path, method: :get %>
 
 
 
 
 <ul>
     <% @memes.each do |meme| %> 
-    <li><%= image_tag (meme.title) %> </li>
+    <li><%= link_to(image_tag(meme.title), meme_path(meme.id))%></li>
     <% end %>
 </ul>
 

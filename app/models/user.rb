@@ -4,6 +4,13 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  def create_facebook_username
+    if !current_user.username.exist
+      email = current_user.email
+      current_user.username = email[/[^@]+/]
+    end
+  end
+
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

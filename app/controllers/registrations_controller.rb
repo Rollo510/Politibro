@@ -1,10 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :create_facebook_username
-
-  def create_facebook_username
-      email = current_user.email
-      current_user.username = email[/[^@]+/]
-  end
+  
     
   
   

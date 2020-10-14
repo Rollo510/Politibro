@@ -4,15 +4,15 @@ class MemesController < ApplicationController
 
     def index
         @memes = Meme.all
-        @memes.order(created_at: :desc)
+        @memes.newest_memes
     end
 
     def new
-       @meme = Meme.new(meme_params)
+        @meme = Meme.new
     end
 
     def create
-        @meme = Meme.new(meme_params)
+        @meme = Meme.create(meme_params)
         if @meme.save
             redirect_to @meme
         else
@@ -20,10 +20,38 @@ class MemesController < ApplicationController
             render :new
         end
     end
+
+    def edit
+    end
+
+    def show
+        if @meme
+            render :show
+        else
+            flash[:notice] = "Meme not found"
+            redirect_to memes_path
+        end
+    end
+
+    def update
+        @meme.update(meme_params)
+        if @meme.errors.empty?
+            redirect_to @meme
+        else
+            flash[:notice] = @meme.errors.full_messages.join(" ")
+            redirect_to edit_meme_path(@meme)
+        end
+    end
+
+    def destroy
+        if @meme.destroy
+            redirect_to memes_path
+        else
+            flash[:notice] = "Could not delete that meme. Sorry."
+            redirect_to @meme
+        end
+    end
     
-
-
-
     
 
 
@@ -35,7 +63,7 @@ class MemesController < ApplicationController
     end
 
     def meme_params
-        params.require(:meme).permit(:title, :nsfw, :description, comments_attributes:[:user_id, :meme_id, :posted_at, :comment])
+        params.require(:meme).permit(:id, :title, :nsfw, :description, comments_attributes:[:user_id, :meme_id, :posted_at, :comment])
     end
 
 end
