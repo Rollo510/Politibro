@@ -5,8 +5,17 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.create(comment_params)
-        redirect_to 
+        if params[:meme_id] && current_user.id
+            @meme = Meme.find_by_id(params[:meme_id])
+            @comment = @meme.comments.build(comment_params)
+        else 
+            @comment = Comment.new(comment_params)
+        end
+        if @comment.save
+            redirect_to @meme
+        else
+            render :new, alert: "Could not create that for you!"
+        end
     end
 
 
