@@ -1,0 +1,12 @@
+<h1> I'm sure you have something really funny to say... </h1>
+<br>
+<%= image_tag (@meme.title) %>
+<br>
+<br>
+<%= form_for [@meme, @comment] do |f| %>
+    <%= f.label "Content" %>
+    <%= f.text_area :content %>
+<%= f.submit %>
+<% end %>
+<br>
+<br>

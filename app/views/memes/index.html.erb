@@ -8,8 +8,6 @@
     <% flash[:alert] %>
 <% end %>
 
-<%= link_to "Create a meme", new_meme_path, method: :get %>
-
 <div class="container">
     <div class="row">
         <% @memes.each do |meme| %> 

@@ -1,6 +1,13 @@
-<h1> Here's the unfunny and terrible meme you wanted: </h1>
+<h1> Here's your meme: </h1>
 <br>
 <%= image_tag (@meme.title) %>
-
+<br>
+<br>
+<% @meme.comments.each do |comment|%>
+    <li> <%= comment.user.email[/[^@]+/] %> says: <%= comment.content %> </li>
+<% end %>
+<br>
+<br>
+<%= button_to "New Comment", new_meme_comment_path(@meme.id), method: :get %>
 
 

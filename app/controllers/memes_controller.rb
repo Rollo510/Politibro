@@ -25,6 +25,7 @@ class MemesController < ApplicationController
     end
 
     def show
+        @comment = Comment.new
         if @meme
             render :show
         else
