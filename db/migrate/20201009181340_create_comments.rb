@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :meme_id
       t.datetime :posted_at
-      t.text :comment
+      t.text :content
 
       t.timestamps
     end

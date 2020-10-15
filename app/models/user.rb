@@ -3,13 +3,11 @@ class User < ApplicationRecord
     has_many :memes, through: :comments
     devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
-
-  def create_facebook_username
-    if !current_user.username.exist
-      email = current_user.email
-      current_user.username = email[/[^@]+/]
-    end
-  end
+    
+  
+  # def create_username
+  #   current_user.username = current_user.email[/[^@]+/]
+  # end
 
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

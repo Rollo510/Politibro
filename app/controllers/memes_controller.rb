@@ -52,8 +52,6 @@ class MemesController < ApplicationController
         end
     end
     
-    
-
 
 
     private
@@ -63,7 +61,7 @@ class MemesController < ApplicationController
     end
 
     def meme_params
-        params.require(:meme).permit(:id, :title, :nsfw, :description, comments_attributes:[:user_id, :meme_id, :posted_at, :comment])
+        params.require(:meme).permit(:title, :nsfw, :description)
     end
 
 end

@@ -1,4 +1,4 @@
-<h1> Welcome to Politibro, <%= current_user.username %>! </h1>
+<h1> Welcome to Politibro, <%= current_user.email[/[^@]+/] %>! </h1>
 <br>
 <h2> Feel free to post your own toxic memes and be sure to insult other users! </h2>
 <br>
@@ -12,11 +12,20 @@
 
 
 
-
-<ul>
-    <% @memes.each do |meme| %> 
-    <li><%= link_to(image_tag(meme.title), meme_path(meme.id))%></li>
-    <% end %>
-</ul>
+<div class="container">
+    <div class="row">
+        <% @memes.each do |meme| %> 
+            <div class="col-3">
+            <div class="card" style="width: 18rem;">
+            <img src= '<%=meme.title%>' class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text"><%= meme.description %> </p>
+            </div>
+            </div>
+            <!--<%= link_to(image_tag(meme.title, {:style => 'max-width: 250px; max-height: 250px; margin-bottom: 20px;'}), meme_path(meme.id))%> -->
+            </div>
+        <% end %>
+    </div>
+</div>
 
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure you want to sign out?"} %>
