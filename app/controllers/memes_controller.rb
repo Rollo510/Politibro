@@ -12,7 +12,7 @@ class MemesController < ApplicationController
     end
 
     def create
-        @meme = Meme.create(meme_params)
+        @meme = Meme.create(title: params[:meme][:title], description: params[:meme][:description], nsfw: params[:meme][:nsfw], user_id: current_user.id)
         if @meme.save
             redirect_to @meme
         else
@@ -62,7 +62,7 @@ class MemesController < ApplicationController
     end
 
     def meme_params
-        params.require(:meme).permit(:title, :nsfw, :description)
+        params.require(:meme).permit(:title, :nsfw, :user_id, :description)
     end
 
 end

@@ -15,11 +15,11 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to @meme
         else
-            render :new, alert: "Your comment couldn't post. Sorry."
+            render :new, flash[:notice] = "Your comment couldn't post. Sorry."
         end
     end
 
-    
+
 
 
     private

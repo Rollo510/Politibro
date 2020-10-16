@@ -1,6 +1,7 @@
 <h1> Here's your meme: </h1>
 <br>
 <%= image_tag (@meme.title) %>
+<%= @meme.description %>
 <br>
 <br>
 <% @meme.comments.each do |comment|%>
