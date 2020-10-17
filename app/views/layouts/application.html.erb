@@ -12,7 +12,13 @@
   <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <p class="navbar-brand"><%= current_user.present? ? current_user.email[/[^@]+/] : Politibro %></p>
+  <p class="navbar-brand">
+  <% if current_user.present? %>
+    <%= link_to current_user.email[/[^@]+/], user_memes_path(current_user.id), method: :get %>
+  <% else %>
+    <p>Politibro   </p>
+  <% end %>
+  </p>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
