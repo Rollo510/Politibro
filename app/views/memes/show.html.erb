@@ -1,14 +1,56 @@
-<h1> Here's your meme: </h1>
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
 <br>
-<%= image_tag (@meme.title) %>
-<%= @meme.description %>
-<br>
-<br>
-<% @meme.comments.each do |comment|%>
-    <li> <%= comment.user.email[/[^@]+/] %> says: <%= comment.content %> </li>
-<% end %>
-<br>
-<br>
-<%= button_to "New Comment", new_meme_comment_path(@meme.id), method: :get %>
 
+    <div class="text-center">
+    <img src="<%= (@meme.title) %>" class="rounded" alt="Probably a dumb meme was here">
+    </div>
+<br>
+
+
+    <div class="text-center">
+    <%= @meme.description %>
+    </div>
+<br>
+    <div class="text-center">
+    <%= button_to "New Comment", new_meme_comment_path(@meme.id), method: :get %>
+    </div>
+<br>
+    <div class="text-center">
+    <% if @meme.user_id == current_user.id %>
+    <%= button_to "Delete This Meme", meme_path(@meme), method: :delete, data: {confirm: 'Are you sure you want to delete this "hilarious" meme?'} %>
+    <% end %>
+    </div>
+<br>
+<br>
+
+<div class="container">
+    <div class="page-header">
+        <h1><small class="pull-right"><%= @meme.comments.count %> </small> Comments </h1>
+    </div> 
+        <% @meme.comments.each do |comment|%>
+                <div class="row">
+                    <div class="col-md-8">
+                    <div class="comments-list">
+                        <div class="media">
+                            <p class="pull-right"></p>
+                                <a class="media-left" href="#">
+                                </a>
+                                <div class="media-body">
+                                <h4 class="media-heading user_name"><%= comment.user.email[/[^@]+/] %> says:</h4>
+                                    <%= comment.content %>
+                                <p><small><a href="">Delete</a></small></p>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                </div>
+        <% end %>
+</div>
+<br>
+<br>
+<br>
 

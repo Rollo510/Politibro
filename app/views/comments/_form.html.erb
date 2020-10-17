@@ -1,0 +1,22 @@
+<h1> I'm sure you have something really funny to say... </h1>
+<br>
+<h2> <%= flash[:notice] %> </h2>
+<br>
+    <div class= "text-center">
+        <%= image_tag (@meme.title) %>
+    </div>
+<br>
+<br>
+    
+    <%= form_for [@meme, @comment] do |f| %>
+        <br>
+        <div class= "text-center">
+            <%= f.text_area :content, placeholder: "Start a fight" %>
+        <div>
+        <br>
+        <div class= "text-center">
+            <%= f.submit %>
+        </div>
+    <% end %>
+<br>
+<br>

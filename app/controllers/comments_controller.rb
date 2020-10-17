@@ -15,12 +15,32 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to @meme
         else
-            render :new, flash[:notice] = "Your comment couldn't post. Sorry."
+            flash[:notice] = "Your comment can't be blank."
+            redirect_to new_meme_comment_path
         end
     end
 
+    def edit
+    end
 
+    def update
+        @meme.update(meme_params)
+        if @meme.errors.empty?
+            redirect_to @meme
+        else
+            flash[:notice] = @meme.errors.full_messages.join(" ")
+            redirect_to edit_meme_path(@meme)
+        end
+    end
 
+    def destroy
+        if @meme.destroy
+            redirect_to memes_path
+        else
+            flash[:notice] = "Could not delete that meme. Sorry."
+            redirect_to @meme
+        end
+    end
 
     private
 

@@ -4,7 +4,6 @@ class MemesController < ApplicationController
 
     def index
         @memes = Meme.all
-        @memes.newest_memes
     end
 
     def new

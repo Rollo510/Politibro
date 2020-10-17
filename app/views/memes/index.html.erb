@@ -1,24 +1,24 @@
 <h1>POLITIBRO</h1>
 <br>
-<h2> Feel free to post your own toxic memes and be sure to insult other users! </h2>
 <br>
 <h2>Here are some of our freshest memes:</h2>
-
- <% if flash[:alert] %>
-    <% flash[:alert] %>
+<br>
+<br>
+ <% if flash[:notice] %>
+    <% flash[:notice] %>
 <% end %>
+<br>
 
-<div class="container">
-    <div class="row">
-        <% @memes.each do |meme| %> 
-            <div class="col-3">
-            <div class="card" style="width: 18rem;">
-            <%= link_to image_tag(meme.title, :border => 'margin: 20px'), meme_path(meme.id), :class => 'card' %>
-            <div class="card-body">
-                <p class="card-text"><%= meme.description %> </p>
-            </div>
-            </div>
-            </div>
-        <% end %>
-    </div>
+<div class="card-deck">
+<% @memes.each do |meme| %>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%=meme.title%>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= meme.description %> </h5>
+    <p class="card-text"><small class="text-muted"> Posted: <%= meme.created_at.strftime("%B %d %Y, %l:%M%P") %> </small></p>
+    <a href="<%= meme_path(meme.id) %>" class="btn btn-primary">Go</a>
+  </div>
 </div>
+<% end %>
+</div>
+

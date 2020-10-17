@@ -5,11 +5,7 @@ class Meme < ApplicationRecord
     validates :title, presence: true, allow_blank: false
     validates :description, presence: true, allow_blank: false
     scope :safe_for_work, -> { where(nsfw: false) }
-
-
-    def self.newest_memes
-       self.order(created_at: :desc)
-    end
+    default_scope { order(created_at: :desc) }
 
 
 end

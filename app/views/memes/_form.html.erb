@@ -1,16 +1,25 @@
 
+
+
 <%= form_with model: @meme, local: :true do |form| %>
+  <div class= "text-center">
+    <%= form.label :title, "Insert image location/url here: " %>
+    <br>
+    <%= form.text_field :title, size: "30x10", class: @meme.errors.any? ? "custom_errors" : nil %>
+  </div>
+<br>
+<br>
+  <div class= "text-center">
+    <%= form.label :description, "Please include a description of this meme: " %>
+    <br>
+    <%= form.text_area :description, size: "30x10"%>
+  </div>
 
-  <%= form.label :title, "Insert image location/url here: " %>
-  <%= form.text_field :title, class: @meme.errors.any? ? "custom_errors" : nil %>
-
-  <%= form.label :description, "Please include a brief description of this meme" %>
-  <%= form.text_area :description %>
-
-  <%= form.label :nsfw, "Check here if this image may be considered offensive or inappropriate" %>
-  <%= form.check_box :nsfw %>
-
-
-  <%= form.submit%>
-
+  <!-- <%= form.label :nsfw, "Check here if this image may be considered offensive or inappropriate" %>
+  <%= form.check_box :nsfw %> -->
+<br>
+<br>
+  <div class= "text-center">
+    <%= form.submit %>
+  </div>
 <% end %>
