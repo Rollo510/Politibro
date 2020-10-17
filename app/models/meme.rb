@@ -6,6 +6,6 @@ class Meme < ApplicationRecord
     validates :description, presence: true, allow_blank: false
     scope :safe_for_work, -> { where(nsfw: false) }
     default_scope { order(created_at: :desc) }
-
+    accepts_nested_attributes_for :comments
 
 end

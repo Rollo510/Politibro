@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :memes do
       resources :comments
   end
+  resources :comments, only: [:destroy, :edit]
   root 'memes#index'
   
 end
