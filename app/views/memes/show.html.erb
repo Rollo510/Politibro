@@ -4,17 +4,26 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <br>
+<body>
 
     <div class="text-center">
     <img src="<%= (@meme.title) %>" class="rounded" alt="Probably a dumb meme was here">
     </div>
 <br>
 
-
     <div class="text-center">
-   <h3> <%= @meme.description %> </h3>
-    </div>
+    <% if @meme.user %>
+    <small class> Created by: <%= @meme.user.email[/[^@]+/] %> </small>
+    <% else %>
+    <small class> Created by: Anonymous </small>
+    <% end %>
 <br>
+<br>
+    <h3> <%= @meme.description %> </h3>
+<br>
+<br>    
+    </div>
+
     <div class="text-center">
     <%= button_to "New Comment", new_meme_comment_path(@meme.id), method: :get %>
     </div>
@@ -56,4 +65,4 @@
 <br>
 <br>
 <br>
-
+</body>
