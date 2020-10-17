@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
+    before_action :set_comment_meme, only: [:new, :create, :edit, :update, :destroy]
+
 
     def new
         @comment = Comment.new   
-        @meme = Meme.find_by(id: params[:meme_id])
     end
 
     def create
         if params[:meme_id]
-            @meme = Meme.find_by_id(params[:meme_id])
             @comment = @meme.comments.build(content: params[:comment][:content], user_id: current_user.id)
         else 
             @comment = Comment.new(comment_params)
@@ -21,21 +21,22 @@ class CommentsController < ApplicationController
     end
 
     def edit
+        @comment = @meme.comments.find_by(id: params[:id])
     end
 
-    # def update
-    #     @meme.update(meme_params)
-    #     if @meme.errors.empty?
-    #         redirect_to @meme
-    #     else
-    #         flash[:notice] = @meme.errors.full_messages.join(" ")
-    #         redirect_to edit_meme_path(@meme)
-    #     end
-    # end
+    def update
+        @comment = @meme.comments.find_by(id: params[:id])
+        @comment.update(comment_params)
+        if @comment.save
+            redirect_to @meme
+        else
+            flash[:notice] = "Just delete your comment if you're going to leave it blank."
+            redirect_to edit_comment_path(@comment, meme_id: @meme.id)
+        end
+    end
 
     def destroy
         @comment = Comment.find_by(id: params[:id])
-        @meme = Meme.find_by(id: params[:meme_id])
         @comment.destroy
         if @comment.destroy
             redirect_to @meme
@@ -49,6 +50,10 @@ class CommentsController < ApplicationController
 
     def comment_params
         params.require(:comment).permit(:content, :meme_id, :user_id)
+    end
+
+    def set_comment_meme
+        @meme = Meme.find_by(id: params[:meme_id])
     end
 
 end

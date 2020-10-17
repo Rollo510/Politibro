@@ -7,11 +7,10 @@
     </div>
 <br>
 <br>
-    
     <%= form_for [@meme, @comment] do |f| %>
         <br>
         <div class= "text-center">
-            <%= f.text_area :content, placeholder: "Start a fight" %>
+            <%= f.text_area :content, size: "75x10", placeholder: "Start a fight" %>
         <div>
         <br>
         <div class= "text-center">

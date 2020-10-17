@@ -44,7 +44,7 @@
                                    <h4> <%= comment.content %> </h4>
                                 <p><small>posted: <%= comment.created_at.strftime("%B %d %Y, %l:%M%P") %></small></p>
                                     <% if comment.user_id == current_user.id %> 
-                                    <p> <%= link_to "Delete", comment_path(comment, meme_id: @meme.id), method: :delete %> </p>
+                                    <p> <%= link_to "Delete", comment_path(comment, meme_id: @meme.id), method: :delete %> - <%= link_to "Edit", edit_comment_path(comment, meme_id: @meme.id), method: :get %> </p>
                                     <% end %>
                                 </div>
                             </div>
