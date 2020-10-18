@@ -33,18 +33,18 @@ class MemesController < ApplicationController
         end
     end
 
-    def update
-        @meme.update(meme_params)
-        if @meme.errors.empty?
-            redirect_to @meme
-        else
-            flash[:notice] = @meme.errors.full_messages.join(" ")
-            redirect_to edit_meme_path(@meme)
-        end
-    end
+    # def update
+    #     @meme.update(meme_params)
+    #     if @meme.errors.empty?
+    #         redirect_to @meme
+    #     else
+    #         flash[:notice] = @meme.errors.full_messages.join(" ")
+    #         redirect_to edit_meme_path(@meme)
+    #     end
+    # end
 
     def destroy
-        if @meme.destroy
+        if @meme.user_id == current_user.id && @meme.destroy
             redirect_to memes_path
         else
             flash[:notice] = "Could not delete that meme. Sorry."

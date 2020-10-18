@@ -26,19 +26,19 @@ class CommentsController < ApplicationController
 
     def update
         @comment = @meme.comments.find_by(id: params[:id])
-        @comment.update(comment_params)
-        if @comment.save
-            redirect_to @meme
-        else
-            flash[:notice] = "Just delete your comment if you're going to leave it blank."
-            redirect_to edit_comment_path(@comment, meme_id: @meme.id)
-        end
+            if @comment.user_id == current_user.id && @comment.save
+                @comment.update(comment_params)
+                redirect_to @meme
+            else
+                flash[:notice] = "You did something wrong. Of course."
+                redirect_to edit_comment_path(@comment, meme_id: @meme.id)
+            end
     end
 
     def destroy
         @comment = Comment.find_by(id: params[:id])
-        @comment.destroy
-        if @comment.destroy
+        if @comment.user_id == current_user.id
+            @comment.destroy
             redirect_to @meme
         else
             flash[:notice] = "Could not delete that comment. Sorry."
