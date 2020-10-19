@@ -1,8 +1,15 @@
-<div class= "text-center"> <h1>POLITIBRO</h1> </div>
+<div class= "text-center"> <h1>P O L I T I B R O</h1> </div>
 <br>
 <br>
-<h2><p>    Here are some of our freshest memes:</h2></p>
+  <div class="text-center">
+    <h3> Here are some of our freshest memes: </h3>
+  </div>
 <br>
+
+<div class= "text-center">
+<small> <%= link_to "Hide Inappropriate Memes", safe_for_work_memes_path %> </small>
+</div>
+
 <br>
  <% if flash[:notice] %>
     <% flash[:notice] %>
@@ -14,7 +21,7 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="<%=meme.title%>" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title"><%= meme.description %> </h5>
+    <h5 class="card-title"><%= link_to meme.description, meme_path(meme.id) %> </h5>
     <p class="card-text"><small class="text-muted"> Posted: <%= meme.created_at.strftime("%B %d %Y, %l:%M%P") %> </small></p>
     <a href="<%= meme_path(meme.id) %>" class="btn btn-primary">Go</a>
   </div>

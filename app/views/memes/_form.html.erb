@@ -9,11 +9,14 @@
   <div class= "text-center">
     <%= form.label :description, "Please include a description of this meme: " %>
     <br>
-    <%= form.text_area :description, size: "75x10"%>
+    <%= form.text_area :description, size: "75x10", style: "white-space: pre-wrap" %>
   </div>
-
-  <!-- <%= form.label :nsfw, "Check here if this image may be considered offensive or inappropriate" %>
-  <%= form.check_box :nsfw %> -->
+<br>
+  <div class = "text-center">
+  <%= form.label :nsfw, "Could this image be considered offensive or unsafe for work environments? " %>
+  <br>
+  <td><%= form.select :nsfw, options_for_select([['Yes', true], ['No', false]])%></td>
+  </div>
 <br>
 <br>
   <div class= "text-center">

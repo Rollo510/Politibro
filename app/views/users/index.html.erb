@@ -1,15 +1,17 @@
-<h2> Here are all of your memes: </h2>
+<div class= "text-center">
+  <h2> Here are all of your memes: </h2>
+</div>
 <br>
 <br>
-<div class="card-deck">
-<% @memes.each do |meme| %>
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="<%=meme.title%>" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= meme.description %> </h5>
-    <p class="card-text"><small class="text-muted"> Posted: <%= meme.created_at.strftime("%B %d %Y, %l:%M%P") %> </small></p>
-    <a href="<%= meme_path(meme.id) %>" class="btn btn-primary">Go</a>
+  <div class="card-deck">
+    <% @memes.each do |meme| %>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="<%=meme.title%>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= meme.description %> </h5>
+          <p class="card-text"><small class="text-muted"> Posted: <%= meme.created_at.strftime("%B %d %Y, %l:%M%P") %> </small></p>
+          <a href="<%= meme_path(meme.id) %>" class="btn btn-primary">Go</a>
+        </div>
+      </div>
+    <% end %>
   </div>
-</div>
-<% end %>
-</div>

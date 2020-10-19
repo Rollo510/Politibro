@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :comments
   end
   resources :comments
+  get '/safe_for_work_memes', to: 'memes#safe_for_work', as: 'safe_for_work_memes'
   root 'memes#index'
   
 end

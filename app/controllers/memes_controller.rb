@@ -6,6 +6,11 @@ class MemesController < ApplicationController
         @memes = Meme.all
     end
 
+    def safe_for_work
+        @memes = Meme.all.safe_for_work
+        render :index
+    end
+
     def new
         @meme = Meme.new
     end
