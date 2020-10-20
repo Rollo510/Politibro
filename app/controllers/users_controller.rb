@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @memes = current_user.memes.all.uniq
+    @memes = Meme.where(user_id: current_user.id)
   end
 
 end
